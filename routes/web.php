@@ -40,6 +40,10 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::view('/users', 'admin.users')->name('admin.users');
     Route::view('/profile', 'admin.profile')->name('admin.profile');
     Route::view('/settings', 'admin.settings')->name('admin.settings');
+    Route::get('/admin/contact', function () {
+    return view('admin.contact');
+})->name('admin.contact');
+
    
 });
 

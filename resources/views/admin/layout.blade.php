@@ -116,6 +116,13 @@
                             <i class="fa-solid fa-users mr-2 text-black"></i> Users
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin.contact') }}"
+                            class="block py-2 px-3 rounded transition font-medium text-gray-900 hover:bg-yellow-200 hover:text-green-700 @if(request()->is('admin/contact')) bg-green-100 text-green-700 font-bold @endif">
+                            <i class="fas fa-address-book mr-2 text-black"></i> Contact Messages
+                        </a>
+                    </li>
+
                 </ul>
             </aside>
             <!-- Hamburger menu button -->

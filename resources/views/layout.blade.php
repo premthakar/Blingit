@@ -31,6 +31,7 @@
                     <span style="color: #222;">bling</span><span style="color: #4CAF50;">it</span>
                 </span>
             </a>
+            &nbsp; &nbsp; &nbsp;
             <nav class="hidden md:flex gap-2 lg:gap-6 text-base font-semibold items-center">
                 <a href="/"
                     class="px-3 py-2 rounded-lg transition hover:bg-green-100 hover:text-green-700 focus:bg-green-200 focus:text-green-800 @if(request()->is('/')) bg-green-200 text-green-800 @endif">Home</a>
@@ -52,9 +53,22 @@
                     class="px-3 py-2 rounded-lg transition hover:bg-green-100 hover:text-green-700 focus:bg-green-200 focus:text-green-800">Contact</a>
             </nav>
             <div class="hidden lg:flex flex-1 justify-center mx-6">
-                <input type="text" placeholder="Search for products..."
-                    class="w-72 px-4 py-2 rounded-full border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-300 bg-white shadow-sm" />
+                <div class="relative w-72">
+                    <!-- Search Icon -->
+                    <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                        <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z" />
+                        </svg>
+                    </div>
+
+                    <!-- Input -->
+                    <input type="text" placeholder="Search for products..."
+                        class="w-full pl-10 pr-4 py-2 rounded-full border border-green-200 focus:outline-none focus:ring-2 focus:ring-green-300 bg-white shadow-sm" />
+                </div>
             </div>
+
             <div class="flex items-center gap-4">
                 <a href="/login"
                     class="hidden md:inline-block px-5 py-2 rounded-full border border-green-600 text-green-700 font-bold bg-white hover:bg-green-50 shadow-sm transition">Login</a>
@@ -155,6 +169,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="border-t border-yellow-200 text-center py-4 text-sm text-gray-500 bg-yellow-50 relative z-10">
             &copy; {{ date('Y') }} Blingit. All rights reserved.
         </div>

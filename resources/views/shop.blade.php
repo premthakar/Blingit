@@ -113,7 +113,21 @@
             <div class="text-gray-500 text-sm mb-2">200 g</div>
             <div class="font-bold text-green-700 mb-2">₹127</div>
             <button class="border-2 border-green-600 text-green-700 font-bold px-6 py-1.5 rounded-lg bg-white hover:bg-green-50 transition">ADD</button>
+            
         </div>
+        <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center">
+            <img src="https://www.bigbasket.com/media/uploads/p/l/10000569_10-amul-butter-pasteurised.jpg" class="w-24 h-24 object-contain mb-2" alt="Amul Butter">
+            <div class="font-semibold text-gray-700 mb-1">Amul Salted Butter</div>
+            <div class="text-gray-500 text-sm mb-2">100 g</div>
+            <div class="font-bold text-green-700 mb-2">₹62</div>
+            <button class="border-2 border-green-600 text-green-700 font-bold px-6 py-1.5 rounded-lg bg-white hover:bg-green-50 transition">ADD</button>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center">
+            <img src="https://www.bigbasket.com/media/uploads/p/l/10000631_13-amul-processed-cheese-cubes.jpg" class="w-24 h-24 object-contain mb-2" alt="Amul Cheese Cubes">
+            <div class="font-semibold text-gray-700 mb-1">Amul Cheese Cubes</div>
+            <div class="text-gray-500 text-sm mb-2">200 g</div>
+            <div class="font-bold text-green-700 mb-2">₹127</div>
+            <button class="border-2 border-green-600 text-green-700 font-bold px-6 py-1.5 rounded-lg bg-white hover:bg-green-50 transition">ADD</button>
     </div>
 </div>
 @endsection 
