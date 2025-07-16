@@ -16,6 +16,7 @@ Route::view('/product', 'product'); // For demo, static product page
 Route::view('/cart', 'cart');
 Route::view('/checkout', 'checkout');
 Route::get('/place-order', [PlaceOrderController::class, 'show'])->name('place-order');
+
 Route::get('/orders', [OrderController::class, 'userOrders'])->name('orders');
 Route::view('/contact', 'contact');
 Route::view('/about', 'about');

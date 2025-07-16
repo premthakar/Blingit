@@ -4,161 +4,275 @@
 
 @section('content')
 
-<div class="bg-gradient-to-br from-green-50 via-yellow-50 to-green-100 py-10" style="font-family: 'Montserrat', 'Poppins', sans-serif;">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
-        <div class="flex-1">
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-black drop-shadow-lg">
-                Get Groceries Delivered <span class="text-green-600">Fast</span>
-            </h1>
-            <p class="text-lg text-green-700 mb-6">Shop fresh groceries, snacks, and essentials delivered to your door in minutes.</p>
-            <a href="/shop" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg text-lg transition">Shop Now</a>
-        </div>
-        <div class="flex-1 flex justify-center">
-            <img src="https://img.icons8.com/color/144/000000/shopping-basket-2.png" alt="Groceries" class="rounded-2xl shadow-2xl w-80 h-64 object-contain bg-white p-4">
-        </div>
+<!-- AOS Animation Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<!-- SwiperJS CDN for Carousel -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+<!-- Bootstrap Carousel -->
+<div id="topBannerCarousel" class="carousel slide mb-10 rounded-2xl overflow-hidden shadow" data-bs-ride="carousel" data-aos="fade">
+  <div class="carousel-inner">
+    @php
+    $banners = [
+        asset('images/banner1.png'),
+        asset('images/banner1.png'),
+        asset('images/banner1.png'),
+    ];
+    @endphp
+    @foreach($banners as $index => $banner)
+    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+      <img src="{{ $banner }}" class="d-block w-100 object-cover" style="height: 300px;" alt="Banner {{ $index + 1 }}">
     </div>
+    @endforeach
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#topBannerCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#topBannerCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 
-
-<!-- Why Choose Us Section -->
-<div class="bg-white py-12">
-    <div class="container mx-auto px-4 text-center">
-        <h2 class="text-2xl font-bold mb-6 text-gray-800">Why Choose Blingit?</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="p-6 bg-green-50 rounded-xl shadow hover:shadow-lg transition">
-                <h3 class="text-lg font-semibold text-green-700 mb-2">Freshness Guaranteed</h3>
-                <p class="text-gray-600">We source fresh produce daily to ensure the highest quality for your kitchen.</p>
-            </div>
-            <div class="p-6 bg-yellow-50 rounded-xl shadow hover:shadow-lg transition">
-                <h3 class="text-lg font-semibold text-yellow-700 mb-2">Instant Support</h3>
-                <p class="text-gray-600">Our support team is ready to help you with any order or issue, 24/7.</p>
-            </div>
-            <div class="p-6 bg-green-50 rounded-xl shadow hover:shadow-lg transition">
-                <h3 class="text-lg font-semibold text-green-700 mb-2">Eco-Friendly Packaging</h3>
-                <p class="text-gray-600">We care for the environment by using recyclable and minimal packaging.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- How Blingit Works Section -->
-<div class="container mx-auto px-4 py-8">
-    <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">How Blingit Works</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        <div class="flex flex-col items-center bg-white rounded-2xl shadow p-6 hover:bg-green-50 transition">
-            <div class="bg-green-100 text-green-600 rounded-full p-4 mb-4">
-                <!-- Bootstrap search icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242 1.398a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/>
-                </svg>
-            </div>
-            <div class="font-bold text-lg mb-2">Browse Products</div>
-            <div class="text-gray-600">Explore a wide range of fresh groceries and daily essentials.</div>
-        </div>
-        <div class="flex flex-col items-center bg-white rounded-2xl shadow p-6 hover:bg-green-50 transition">
-            <div class="bg-yellow-100 text-yellow-600 rounded-full p-4 mb-4">
-                <!-- Bootstrap basket icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-basket" viewBox="0 0 16 16">
-                  <path d="M2.31 5.243 8 1.07l5.69 4.172a.5.5 0 0 1-.58.814L8 2.13 2.89 6.057a.5.5 0 1 1-.58-.814z"/>
-                  <path d="M13.443 6.56 14.964 13.1A2 2 0 0 1 13.03 16H2.97a2 2 0 0 1-1.934-2.9l1.52-6.54A1.5 1.5 0 0 1 4.01 5h7.98a1.5 1.5 0 0 1 1.453 1.56zM4.01 6a.5.5 0 0 0-.485.378l-1.52 6.54A1 1 0 0 0 2.97 15h10.06a1 1 0 0 0 .965-1.082l-1.52-6.54A.5.5 0 0 0 11.99 6H4.01z"/>
-                </svg>
-            </div>
-            <div class="font-bold text-lg mb-2">Place Your Order</div>
-            <div class="text-gray-600">Add your favorite items to the cart and checkout in seconds.</div>
-        </div>
-        <div class="flex flex-col items-center bg-white rounded-2xl shadow p-6 hover:bg-green-50 transition">
-            <div class="bg-green-100 text-green-600 rounded-full p-4 mb-4">
-                <!-- Bootstrap truck icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
-                  <path d="M0 1.5A.5.5 0 0 1 .5 1h10a.5.5 0 0 1 .5.5V3h1.5A1.5 1.5 0 0 1 14 4.5V6h.5A1.5 1.5 0 0 1 16 7.5v3a.5.5 0 0 1-.5.5H15v1a2 2 0 1 1-4 0v-1H5v1a2 2 0 1 1-4 0v-1h-.5a.5.5 0 0 1-.5-.5v-9zM1 2v8h14V7.5a.5.5 0 0 0-.5-.5H14V4.5a.5.5 0 0 0-.5-.5H11V2H1zm1 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0zm10 0a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>
-                </svg>
-            </div>
-            <div class="font-bold text-lg mb-2">Get Fast Delivery</div>
-            <div class="text-gray-600">Sit back and relax while we deliver to your doorstep in minutes!</div>
-        </div>
-    </div>
-</div>
 <div class="container mx-auto px-4 py-10">
-    <h2 class="text-2xl font-bold mb-6 text-gray-800">Shop by Category</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
-        <a href="/shop" class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl hover:bg-green-50 transition">
-            <img src="https://img.icons8.com/color/96/000000/milk-bottle.png" class="w-16 h-16 mb-2" alt="Dairy">
-            <span class="font-semibold text-gray-700">Dairy & Eggs</span>
-        </a>
-        <a href="/shop" class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl hover:bg-green-50 transition">
-            <img src="https://img.icons8.com/color/96/000000/broccoli.png" class="w-16 h-16 mb-2" alt="Vegetables">
-            <span class="font-semibold text-gray-700">Vegetables</span>
-        </a>
-        <a href="/shop" class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl hover:bg-green-50 transition">
-            <img src="https://img.icons8.com/color/96/000000/apple.png" class="w-16 h-16 mb-2" alt="Fruits">
-            <span class="font-semibold text-gray-700">Fruits</span>
-        </a>
-        <a href="/shop" class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl hover:bg-green-50 transition">
-            <img src="https://img.icons8.com/color/96/000000/bread.png" class="w-16 h-16 mb-2" alt="Bakery">
-            <span class="font-semibold text-gray-700">Bakery</span>
-        </a>
+
+    <!-- Milk & Eggs Section -->
+<div class="flex items-center justify-between mb-4" data-aos="fade-up">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Milk & Eggs</h2>
+    <a href="/shop" class="text-green-600 font-semibold hover:underline">See All</a>
+</div>
+<div class="swiper mySwiper mb-10" data-aos="fade-up" data-aos-delay="100">
+    <div class="swiper-wrapper">
+        @php
+            $products = [
+                ['title' => 'Amul Gold Full Cream Milk', 'size' => '500 ml', 'price' => '₹34', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/1203470_2-amul-gold-homogenised-standardised-milk.jpg'],
+                ['title' => 'Banana Robusta', 'size' => '1 kg', 'price' => '₹45', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/40075561_2-fresho-banana-robusta.jpg'],
+                ['title' => 'Fresh Onion', 'size' => '1 kg', 'price' => '₹30', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000263_15-fresho-onion.jpg'],
+                ['title' => 'Tomato Hybrid', 'size' => '1 kg', 'price' => '₹28', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000331_14-fresho-tomato-hybrid.jpg'],
+            ];
+        @endphp
+        @foreach($products as $product)
+        <div class="swiper-slide">
+            <div class="bg-white rounded-2xl shadow-md p-4 flex flex-col items-center hover:bg-green-50 transition transform hover:-translate-y-1">
+                <img src="{{ $product['img'] }}" class="w-24 h-24 object-contain mb-2" alt="{{ $product['title'] }}">
+                <div class="font-semibold text-gray-700 text-center mb-1">{{ $product['title'] }}</div>
+                <div class="text-gray-500 text-sm mb-2">{{ $product['size'] }}</div>
+                <div class="font-bold text-green-700 mb-2">{{ $product['price'] }}</div>
+                <button class="border border-green-600 text-green-700 font-semibold px-6 py-1.5 rounded-lg bg-white hover:bg-green-100 transition">ADD</button>
+            </div>
+        </div>
+        @endforeach
     </div>
-    <h2 class="text-2xl font-bold mb-6 text-gray-800">Featured Products</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
-        <div class="bg-white rounded-2xl shadow-lg p-4 flex flex-col items-center transition transform hover:-translate-y-1 hover:shadow-2xl hover:bg-green-50">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/1203470_2-amul-gold-homogenised-standardised-milk.jpg" class="w-24 h-24 object-contain mb-2" alt="Amul Gold Milk">
-            <div class="font-semibold text-gray-700 mb-1">Amul Gold Full Cream Milk</div>
-            <div class="text-gray-500 text-sm mb-2">500 ml</div>
-            <div class="font-bold text-green-700 mb-2">₹34</div>
-            <button class="border-2 border-green-600 text-green-700 font-bold px-6 py-1.5 rounded-lg bg-white hover:bg-green-50 transition">ADD</button>
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg p-4 flex flex-col items-center transition transform hover:-translate-y-1 hover:shadow-2xl hover:bg-green-50">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/40075561_2-fresho-banana-robusta.jpg" class="w-24 h-24 object-contain mb-2" alt="Banana">
-            <div class="font-semibold text-gray-700 mb-1">Banana Robusta</div>
-            <div class="text-gray-500 text-sm mb-2">1 kg</div>
-            <div class="font-bold text-green-700 mb-2">₹45</div>
-            <button class="border-2 border-green-600 text-green-700 font-bold px-6 py-1.5 rounded-lg bg-white hover:bg-green-50 transition">ADD</button>
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg p-4 flex flex-col items-center transition transform hover:-translate-y-1 hover:shadow-2xl hover:bg-green-50">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/10000263_15-fresho-onion.jpg" class="w-24 h-24 object-contain mb-2" alt="Onion">
-            <div class="font-semibold text-gray-700 mb-1">Fresh Onion</div>
-            <div class="text-gray-500 text-sm mb-2">1 kg</div>
-            <div class="font-bold text-green-700 mb-2">₹30</div>
-            <button class="border-2 border-green-600 text-green-700 font-bold px-6 py-1.5 rounded-lg bg-white hover:bg-green-50 transition">ADD</button>
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg p-4 flex flex-col items-center transition transform hover:-translate-y-1 hover:shadow-2xl hover:bg-green-50">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/10000331_14-fresho-tomato-hybrid.jpg" class="w-24 h-24 object-contain mb-2" alt="Tomato">
-            <div class="font-semibold text-gray-700 mb-1">Tomato Hybrid</div>
-            <div class="text-gray-500 text-sm mb-2">1 kg</div>
-            <div class="font-bold text-green-700 mb-2">₹28</div>
-            <button class="border-2 border-green-600 text-green-700 font-bold px-6 py-1.5 rounded-lg bg-white hover:bg-green-50 transition">ADD</button>
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg p-4 flex flex-col items-center transition transform hover:-translate-y-1 hover:shadow-2xl hover:bg-green-50">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/10000401_14-fresho-potato.jpg" class="w-24 h-24 object-contain mb-2" alt="Potato">
-            <div class="font-semibold text-gray-700 mb-1">Fresh Potato</div>
-            <div class="text-gray-500 text-sm mb-2">1 kg</div>
-            <div class="font-bold text-green-700 mb-2">₹25</div>
-            <button class="border-2 border-green-600 text-green-700 font-bold px-6 py-1.5 rounded-lg bg-white hover:bg-green-50 transition">ADD</button>
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg p-4 flex flex-col items-center transition transform hover:-translate-y-1 hover:shadow-2xl hover:bg-green-50">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/10000148_15-fresho-cucumber.jpg" class="w-24 h-24 object-contain mb-2" alt="Cucumber">
-            <div class="font-semibold text-gray-700 mb-1">Cucumber</div>
-            <div class="text-gray-500 text-sm mb-2">500 g</div>
-            <div class="font-bold text-green-700 mb-2">₹18</div>
-            <button class="border-2 border-green-600 text-green-700 font-bold px-6 py-1.5 rounded-lg bg-white hover:bg-green-50 transition">ADD</button>
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg p-4 flex flex-col items-center transition transform hover:-translate-y-1 hover:shadow-2xl hover:bg-green-50">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/10000142_14-fresho-carrot-orange.jpg" class="w-24 h-24 object-contain mb-2" alt="Carrot">
-            <div class="font-semibold text-gray-700 mb-1">Carrot Orange</div>
-            <div class="text-gray-500 text-sm mb-2">500 g</div>
-            <div class="font-bold text-green-700 mb-2">₹22</div>
-            <button class="border-2 border-green-600 text-green-700 font-bold px-6 py-1.5 rounded-lg bg-white hover:bg-green-50 transition">ADD</button>
-        </div>
-        <div class="bg-white rounded-2xl shadow-lg p-4 flex flex-col items-center transition transform hover:-translate-y-1 hover:shadow-2xl hover:bg-green-50">
-            <img src="https://www.bigbasket.com/media/uploads/p/l/10000103_14-fresho-apple-shimla.jpg" class="w-24 h-24 object-contain mb-2" alt="Apple Shimla">
-            <div class="font-semibold text-gray-700 mb-1">Apple Shimla</div>
-            <div class="text-gray-500 text-sm mb-2">4 pcs (approx. 500g)</div>
-            <div class="font-bold text-green-700 mb-2">₹99</div>
-            <button class="border-2 border-green-600 text-green-700 font-bold px-6 py-1.5 rounded-lg bg-white hover:bg-green-50 transition">ADD</button>
+    <div class="swiper-pagination mt-4"></div>
+</div>
+
+<!-- Vegetables Section -->
+<div class="flex items-center justify-between mb-4" data-aos="fade-up">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Vegetables</h2>
+    <a href="/shop" class="text-green-600 font-semibold hover:underline">See All</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+    @php
+        $veggies = [
+            ['title' => 'Fresh Potato', 'size' => '1 kg', 'price' => '₹25', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000401_14-fresho-potato.jpg'],
+            ['title' => 'Cucumber', 'size' => '500 g', 'price' => '₹18', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000148_15-fresho-cucumber.jpg'],
+            ['title' => 'Carrot Orange', 'size' => '500 g', 'price' => '₹22', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000142_14-fresho-carrot-orange.jpg'],
+            ['title' => 'Apple Shimla', 'size' => '4 pcs (approx. 500g)', 'price' => '₹99', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000103_14-fresho-apple-shimla.jpg'],
+        ];
+    @endphp
+    @foreach($veggies as $index => $veg)
+    <div class="bg-white rounded-2xl shadow-md p-4 flex flex-col items-center hover:bg-green-50 transition transform hover:-translate-y-1" 
+         data-aos="fade-up" 
+         data-aos-delay="{{ 100 + ($index * 50) }}">
+        <img src="{{ $veg['img'] }}" class="w-24 h-24 object-contain mb-2" alt="{{ $veg['title'] }}">
+        <div class="font-semibold text-gray-700 text-center mb-1">{{ $veg['title'] }}</div>
+        <div class="text-gray-500 text-sm mb-2">{{ $veg['size'] }}</div>
+        <div class="font-bold text-green-700 mb-2">{{ $veg['price'] }}</div>
+        <button class="border border-green-600 text-green-700 font-semibold px-6 py-1.5 rounded-lg bg-white hover:bg-green-100 transition">ADD</button>
+    </div>
+    @endforeach
+</div>
+
+
+<!-- Vegetables Section -->
+<div class="flex items-center justify-between mb-4" data-aos="fade-up">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Vegetables</h2>
+    <a href="/shop" class="text-green-600 font-semibold hover:underline">See All</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+    @php
+        $veggies = [
+            ['title' => 'Fresh Potato', 'size' => '1 kg', 'price' => '₹25', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000401_14-fresho-potato.jpg'],
+            ['title' => 'Cucumber', 'size' => '500 g', 'price' => '₹18', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000148_15-fresho-cucumber.jpg'],
+            ['title' => 'Carrot Orange', 'size' => '500 g', 'price' => '₹22', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000142_14-fresho-carrot-orange.jpg'],
+            ['title' => 'Apple Shimla', 'size' => '4 pcs (approx. 500g)', 'price' => '₹99', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000103_14-fresho-apple-shimla.jpg'],
+        ];
+    @endphp
+    @foreach($veggies as $index => $veg)
+    <div class="bg-white rounded-2xl shadow-md p-4 flex flex-col items-center hover:bg-green-50 transition transform hover:-translate-y-1" 
+         data-aos="fade-up" 
+         data-aos-delay="{{ 100 + ($index * 50) }}">
+        <img src="{{ $veg['img'] }}" class="w-24 h-24 object-contain mb-2" alt="{{ $veg['title'] }}">
+        <div class="font-semibold text-gray-700 text-center mb-1">{{ $veg['title'] }}</div>
+        <div class="text-gray-500 text-sm mb-2">{{ $veg['size'] }}</div>
+        <div class="font-bold text-green-700 mb-2">{{ $veg['price'] }}</div>
+        <button class="border border-green-600 text-green-700 font-semibold px-6 py-1.5 rounded-lg bg-white hover:bg-green-100 transition">ADD</button>
+    </div>
+    @endforeach
+</div>
+
+
+<!-- Vegetables Section -->
+<div class="flex items-center justify-between mb-4" data-aos="fade-up">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Vegetables</h2>
+    <a href="/shop" class="text-green-600 font-semibold hover:underline">See All</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+    @php
+        $veggies = [
+            ['title' => 'Fresh Potato', 'size' => '1 kg', 'price' => '₹25', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000401_14-fresho-potato.jpg'],
+            ['title' => 'Cucumber', 'size' => '500 g', 'price' => '₹18', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000148_15-fresho-cucumber.jpg'],
+            ['title' => 'Carrot Orange', 'size' => '500 g', 'price' => '₹22', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000142_14-fresho-carrot-orange.jpg'],
+            ['title' => 'Apple Shimla', 'size' => '4 pcs (approx. 500g)', 'price' => '₹99', 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000103_14-fresho-apple-shimla.jpg'],
+        ];
+    @endphp
+    @foreach($veggies as $index => $veg)
+    <div class="bg-white rounded-2xl shadow-md p-4 flex flex-col items-center hover:bg-green-50 transition transform hover:-translate-y-1" 
+         data-aos="fade-up" 
+         data-aos-delay="{{ 100 + ($index * 50) }}">
+        <img src="{{ $veg['img'] }}" class="w-24 h-24 object-contain mb-2" alt="{{ $veg['title'] }}">
+        <div class="font-semibold text-gray-700 text-center mb-1">{{ $veg['title'] }}</div>
+        <div class="text-gray-500 text-sm mb-2">{{ $veg['size'] }}</div>
+        <div class="font-bold text-green-700 mb-2">{{ $veg['price'] }}</div>
+        <button class="border border-green-600 text-green-700 font-semibold px-6 py-1.5 rounded-lg bg-white hover:bg-green-100 transition">ADD</button>
+    </div>
+    @endforeach
+</div>
+
+    
+
+    <!-- How Blingit Works Section -->
+    <div class="bg-gray-50 p-8 rounded-2xl my-12" data-aos="fade-up">
+        <h2 class="text-2xl font-bold mb-8 text-center text-gray-800" data-aos="fade-up">How Blingit Works</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white p-6 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </div>
+                <h3 class="font-bold text-lg mb-2">1. Add Products</h3>
+                <p class="text-gray-600">Browse our fresh selection and add items to your cart</p>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white p-6 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                </div>
+                <h3 class="font-bold text-lg mb-2">2. Checkout Securely</h3>
+                <p class="text-gray-600">Complete your order with our safe payment options</p>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-white p-6 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                </div>
+                <h3 class="font-bold text-lg mb-2">3. Fast Delivery</h3>
+                <p class="text-gray-600">Get your groceries delivered fresh to your doorstep</p>
+            </div>
         </div>
     </div>
-    <div class="flex justify-center mb-12">
-        <a href="/shop" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg text-lg transition">See All Products</a>
+
+    <!-- Why Choose Us Section -->
+    <div class="bg-green-50 p-8 rounded-2xl my-12" data-aos="fade-up">
+        <h2 class="text-2xl font-bold mb-8 text-center text-gray-800" data-aos="fade-up">Why Choose Blingit</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm flex items-start" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-green-100 p-3 rounded-full mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-2">Fast Delivery</h3>
+                    <p class="text-gray-600 text-sm">Get your order delivered in under 2 hours</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm flex items-start" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-green-100 p-3 rounded-full mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-2">Quality Guarantee</h3>
+                    <p class="text-gray-600 text-sm">100% fresh and high quality products</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm flex items-start" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-green-100 p-3 rounded-full mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-2">Secure Payments</h3>
+                    <p class="text-gray-600 text-sm">Multiple safe payment options</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm flex items-start" data-aos="fade-up" data-aos-delay="400">
+                <div class="bg-green-100 p-3 rounded-full mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-2">24/7 Support</h3>
+                    <p class="text-gray-600 text-sm">Dedicated customer care team</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-@endsection 
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  // Initialize Swiper
+  const swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1.2,
+    spaceBetween: 20,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2.5,
+      },
+      768: {
+        slidesPerView: 3.5,
+      },
+      1024: {
+        slidesPerView: 4,
+      },
+    },
+  });
+
+  // Initialize AOS
+  document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      offset: 120,
+      delay: 100
+    });
+  });
+</script>
+@endsection

@@ -144,6 +144,7 @@
     </div>
 </div>
 <script>
+    
 document.getElementById('addCategoryBtn').addEventListener('click', function() {
     document.getElementById('addCategoryModal').classList.remove('hidden');
 });
