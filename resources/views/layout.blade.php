@@ -156,7 +156,8 @@
             <!-- Brand & Social -->
             <div class="flex flex-col gap-4 items-start">
                 <a href="/" class="flex items-center group">
-                    <span class="text-3xl font-extrabold lowercase bg-yellow-300 px-3 py-1 rounded-xl shadow-lg blingit-logo-text">
+                      <span class="text-3xl font-extrabold px-3 py-1 rounded-lg shadow-lg blingit-logo-text"
+                        style="background-color: #FFFF00;">
                         <span class="text-black">bling</span><span class="text-green-600">it</span>
                     </span>
                 </a>

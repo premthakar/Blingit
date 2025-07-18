@@ -3,167 +3,279 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="p-8 bg-gradient-to-br from-blue-100 via-white to-green-100 min-h-screen">
-    <h1 class="text-4xl font-black mb-10 text-gray-900 tracking-tight flex items-center gap-3 drop-shadow-lg">
-        <i class="bi bi-speedometer2 text-blue-700"></i>
-        Dashboard
-    </h1>
+{{-- 
+  This Blade template provides a modern, responsive, and data-rich admin dashboard.
+  - It's styled entirely with Tailwind CSS, matching the "Blingit Grocery" theme.
+  - Features redesigned statistics cards for key metrics.
+  - Integrates Chart.js for dynamic and interactive bar and doughnut charts with enhanced UI.
+  - The "Recent Orders" table is enhanced for better readability and responsiveness.
+  - All icons are replaced with high-quality inline SVGs.
+--}}
+
+<!-- Chart.js CDN for interactive charts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div>
+    <!-- Header -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-extrabold text-gray-800">Welcome back, Admin!</h1>
+        <p class="text-gray-500 mt-1">Here's a snapshot of your store's performance today.</p>
+    </div>
+
     <!-- Stats Cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-        <div class="bg-white/70 backdrop-blur-md rounded-3xl shadow-md p-8 flex flex-col items-center hover:scale-105 hover:shadow-xl transition-all duration-200">
-            <div class="flex items-center gap-3 mb-3">
-                <i class="bi bi-tags-fill text-4xl text-blue-600"></i>
-                <span class="text-gray-800 font-bold text-xl">Categories</span>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <!-- Total Revenue Card -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 flex items-center gap-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <div class="bg-green-100 p-4 rounded-full">
+                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 6v-1m0-1V4m0 2.01v.01M12 18v-1m0-1v-1m0-1v-1m0-1v-1m0-1v-1m0 0V9.01M12 4.01V3"></path></svg>
             </div>
-            <span class="bg-blue-100 text-blue-800 text-3xl font-black px-7 py-3 rounded-2xl shadow-inner">12</span>
+            <div>
+                <p class="text-sm text-gray-500 font-medium">Total Revenue</p>
+                <p class="text-3xl font-extrabold text-gray-800">₹12,500</p>
+            </div>
         </div>
-        <div class="bg-white/70 backdrop-blur-md rounded-3xl shadow-md p-8 flex flex-col items-center hover:scale-105 hover:shadow-xl transition-all duration-200">
-            <div class="flex items-center gap-3 mb-3">
-                <i class="bi bi-box-seam text-4xl text-green-700"></i>
-                <span class="text-gray-800 font-bold text-xl">Products</span>
+        <!-- Total Orders Card -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 flex items-center gap-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <div class="bg-yellow-100 p-4 rounded-full">
+                <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
             </div>
-            <span class="bg-green-100 text-green-800 text-3xl font-black px-7 py-3 rounded-2xl shadow-inner">120</span>
+            <div>
+                <p class="text-sm text-gray-500 font-medium">Total Orders</p>
+                <p class="text-3xl font-extrabold text-gray-800">34</p>
+            </div>
         </div>
-        <div class="bg-white/70 backdrop-blur-md rounded-3xl shadow-md p-8 flex flex-col items-center hover:scale-105 hover:shadow-xl transition-all duration-200">
-            <div class="flex items-center gap-3 mb-3">
-                <i class="bi bi-bag-check-fill text-4xl text-yellow-600"></i>
-                <span class="text-gray-800 font-bold text-xl">Orders</span>
+        <!-- Total Customers Card -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 flex items-center gap-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <div class="bg-blue-100 p-4 rounded-full">
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M15 21a6 6 0 00-9-5.197M15 21a6 6 0 006-6v-1a3 3 0 00-3-3H9a3 3 0 00-3 3v1a6 6 0 006 6z"></path></svg>
             </div>
-            <span class="bg-yellow-100 text-yellow-800 text-3xl font-black px-7 py-3 rounded-2xl shadow-inner">34</span>
+            <div>
+                <p class="text-sm text-gray-500 font-medium">Total Customers</p>
+                <p class="text-3xl font-extrabold text-gray-800">56</p>
+            </div>
         </div>
-        <div class="bg-white/70 backdrop-blur-md rounded-3xl shadow-md p-8 flex flex-col items-center hover:scale-105 hover:shadow-xl transition-all duration-200">
-            <div class="flex items-center gap-3 mb-3">
-                <i class="bi bi-people-fill text-4xl text-purple-700"></i>
-                <span class="text-gray-800 font-bold text-xl">Users</span>
+        <!-- Pending Orders Card -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 flex items-center gap-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <div class="bg-orange-100 p-4 rounded-full">
+                <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
-            <span class="bg-purple-100 text-purple-800 text-3xl font-black px-7 py-3 rounded-2xl shadow-inner">56</span>
-        </div>
-    </div>
-    <!-- Secondary Stats -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-        <div class="bg-white/80 backdrop-blur-md rounded-3xl shadow-md p-8 flex flex-col items-center hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
-            <div class="flex items-center gap-3 mb-3">
-                <i class="bi bi-currency-rupee text-4xl text-green-700"></i>
-                <span class="text-gray-800 font-bold text-xl">Total Revenue</span>
+            <div>
+                <p class="text-sm text-gray-500 font-medium">Pending Orders</p>
+                <p class="text-3xl font-extrabold text-gray-800">3</p>
             </div>
-            <span class="bg-green-100 text-green-800 text-2xl font-black px-6 py-2 rounded-xl">₹12,500</span>
-        </div>
-        <div class="bg-white/80 backdrop-blur-md rounded-3xl shadow-md p-8 flex flex-col items-center hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
-            <div class="flex items-center gap-3 mb-3">
-                <i class="bi bi-people text-4xl text-blue-700"></i>
-                <span class="text-gray-800 font-bold text-xl">New Users (This Month)</span>
-            </div>
-            <span class="bg-blue-100 text-blue-800 text-2xl font-black px-6 py-2 rounded-xl">8</span>
-        </div>
-        <div class="bg-white/80 backdrop-blur-md rounded-3xl shadow-md p-8 flex flex-col items-center hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
-            <div class="flex items-center gap-3 mb-3">
-                <i class="bi bi-bag text-4xl text-yellow-600"></i>
-                <span class="text-gray-800 font-bold text-xl">Pending Orders</span>
-            </div>
-            <span class="bg-yellow-100 text-yellow-800 text-2xl font-black px-6 py-2 rounded-xl">3</span>
         </div>
     </div>
+
     <!-- Charts -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-        <div class="bg-white/90 backdrop-blur-md rounded-3xl shadow-md p-8">
-            <h2 class="text-xl font-bold mb-6 text-gray-800 flex items-center gap-3">
-                <i class="bi bi-bar-chart-line text-blue-600"></i>
-                Monthly Revenue
-            </h2>
-            <svg viewBox="0 0 320 120" class="w-full h-40">
-                <rect x="20" y="60" width="20" height="40" rx="8" fill="#E5E7EB"/>
-                <rect x="60" y="40" width="20" height="60" rx="8" fill="#4CAF50"/>
-                <rect x="100" y="30" width="20" height="70" rx="8" fill="#4CAF50"/>
-                <rect x="140" y="50" width="20" height="50" rx="8" fill="#4CAF50"/>
-                <rect x="180" y="20" width="20" height="80" rx="8" fill="#FFD600"/>
-                <rect x="220" y="70" width="20" height="30" rx="8" fill="#4CAF50"/>
-                <rect x="260" y="60" width="20" height="40" rx="8" fill="#4CAF50"/>
-                <text x="20" y="115" font-size="13" fill="#6B7280">Jan</text>
-                <text x="60" y="115" font-size="13" fill="#6B7280">Feb</text>
-                <text x="100" y="115" font-size="13" fill="#6B7280">Mar</text>
-                <text x="140" y="115" font-size="13" fill="#6B7280">Apr</text>
-                <text x="180" y="115" font-size="13" fill="#6B7280">May</text>
-                <text x="220" y="115" font-size="13" fill="#6B7280">Jun</text>
-                <text x="260" y="115" font-size="13" fill="#6B7280">Jul</text>
-            </svg>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+        <!-- Sales Overview Chart -->
+        <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Sales Overview</h2>
+            <div class="h-80">
+                <canvas id="salesChart"></canvas>
+            </div>
         </div>
-        <div class="bg-white/90 backdrop-blur-md rounded-3xl shadow-md p-8">
-            <h2 class="text-xl font-bold mb-6 text-gray-800 flex items-center gap-3">
-                <i class="bi bi-pie-chart-fill text-yellow-500"></i>
-                Order Status Breakdown
-            </h2>
-            <svg viewBox="0 0 120 120" class="w-40 h-40 mx-auto">
-                <circle cx="60" cy="60" r="50" fill="#F3F4F6"/>
-                <path d="M60 60 L60 10 A50 50 0 0 1 110 60 Z" fill="#4CAF50"/>
-                <path d="M60 60 L110 60 A50 50 0 0 1 60 110 Z" fill="#FFD600"/>
-                <path d="M60 60 L60 110 A50 50 0 0 1 10 60 Z" fill="#EF4444"/>
-                <path d="M60 60 L10 60 A50 50 0 0 1 60 10 Z" fill="#3B82F6"/>
-                <circle cx="60" cy="60" r="30" fill="#fff"/>
-            </svg>
-            <div class="flex justify-center gap-6 mt-6 text-sm">
-                <span class="flex items-center gap-2"><span class="inline-block w-4 h-4 rounded-full bg-green-500"></span>Completed</span>
-                <span class="flex items-center gap-2"><span class="inline-block w-4 h-4 rounded-full bg-yellow-400"></span>Pending</span>
-                <span class="flex items-center gap-2"><span class="inline-block w-4 h-4 rounded-full bg-red-500"></span>Cancelled</span>
-                <span class="flex items-center gap-2"><span class="inline-block w-4 h-4 rounded-full bg-blue-500"></span>Other</span>
+        <!-- Order Status Chart -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 flex flex-col">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Order Status</h2>
+            <div class="flex-grow flex items-center justify-center relative h-80">
+                 <canvas id="orderStatusChart"></canvas>
             </div>
         </div>
     </div>
+
     <!-- Recent Orders Table -->
-    <div class="bg-white/95 backdrop-blur-md rounded-3xl shadow-md p-8 mt-12">
-        <h2 class="text-2xl font-black mb-8 text-gray-900 flex items-center gap-3">
-            <i class="bi bi-clock-history text-indigo-600"></i>
-            Recent Orders
-        </h2>
-        <div class="overflow-x-auto rounded-xl">
-            <table class="min-w-full text-base">
-                <thead>
-                    <tr class="bg-gradient-to-r from-blue-100 to-green-100 text-gray-900">
-                        <th class="py-4 px-6 font-bold">Order #</th>
-                        <th class="py-4 px-6 font-bold">Customer</th>
-                        <th class="py-4 px-6 font-bold">Date</th>
-                        <th class="py-4 px-6 font-bold">Total</th>
-                        <th class="py-4 px-6 font-bold">Status</th>
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Recent Orders</h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full text-sm">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Order #</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Customer</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Date</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Total</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Status</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="even:bg-gray-50 hover:bg-green-100 transition">
-                        <td class="py-4 px-6 font-mono">1005</td>
-                        <td class="py-4 px-6">Rahul Singh</td>
-                        <td class="py-4 px-6">2024-07-04</td>
-                        <td class="py-4 px-6">₹150.00</td>
-                        <td class="py-4 px-6"><span class="bg-red-100 text-red-700 px-4 py-1.5 rounded-full text-sm font-bold shadow">Cancelled</span></td>
+                <tbody class="divide-y divide-gray-200">
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="py-4 px-6 font-mono text-gray-700">#1005</td>
+                        <td class="py-4 px-6 font-medium text-gray-800">Rahul Singh</td>
+                        <td class="py-4 px-6 text-gray-600">July 18, 2025</td>
+                        <td class="py-4 px-6 font-semibold text-gray-800">₹150.00</td>
+                        <td class="py-4 px-6"><span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold">Cancelled</span></td>
+                        <td class="py-4 px-6"><a href="#" class="text-green-600 hover:underline font-semibold">View</a></td>
                     </tr>
-                    <tr class="even:bg-gray-50 hover:bg-green-100 transition">
-                        <td class="py-4 px-6 font-mono">1004</td>
-                        <td class="py-4 px-6">Priya Verma</td>
-                        <td class="py-4 px-6">2024-07-03</td>
-                        <td class="py-4 px-6">₹580.00</td>
-                        <td class="py-4 px-6"><span class="bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-bold shadow">Completed</span></td>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="py-4 px-6 font-mono text-gray-700">#1004</td>
+                        <td class="py-4 px-6 font-medium text-gray-800">Priya Verma</td>
+                        <td class="py-4 px-6 text-gray-600">July 17, 2025</td>
+                        <td class="py-4 px-6 font-semibold text-gray-800">₹580.00</td>
+                        <td class="py-4 px-6"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Completed</span></td>
+                        <td class="py-4 px-6"><a href="#" class="text-green-600 hover:underline font-semibold">View</a></td>
                     </tr>
-                    <tr class="even:bg-gray-50 hover:bg-green-100 transition">
-                        <td class="py-4 px-6 font-mono">1003</td>
-                        <td class="py-4 px-6">Amit Kumar</td>
-                        <td class="py-4 px-6">2024-07-03</td>
-                        <td class="py-4 px-6">₹210.00</td>
-                        <td class="py-4 px-6"><span class="bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-bold shadow">Completed</span></td>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="py-4 px-6 font-mono text-gray-700">#1003</td>
+                        <td class="py-4 px-6 font-medium text-gray-800">Amit Kumar</td>
+                        <td class="py-4 px-6 text-gray-600">July 17, 2025</td>
+                        <td class="py-4 px-6 font-semibold text-gray-800">₹210.00</td>
+                        <td class="py-4 px-6"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Completed</span></td>
+                        <td class="py-4 px-6"><a href="#" class="text-green-600 hover:underline font-semibold">View</a></td>
                     </tr>
-                    <tr class="even:bg-gray-50 hover:bg-green-100 transition">
-                        <td class="py-4 px-6 font-mono">1002</td>
-                        <td class="py-4 px-6">Jane Smith</td>
-                        <td class="py-4 px-6">2024-07-02</td>
-                        <td class="py-4 px-6">₹320.00</td>
-                        <td class="py-4 px-6"><span class="bg-yellow-100 text-yellow-700 px-4 py-1.5 rounded-full text-sm font-bold shadow">Pending</span></td>
-                    </tr>
-                    <tr class="even:bg-gray-50 hover:bg-green-100 transition">
-                        <td class="py-4 px-6 font-mono">1001</td>
-                        <td class="py-4 px-6">John Doe</td>
-                        <td class="py-4 px-6">2024-07-01</td>
-                        <td class="py-4 px-6">₹450.00</td>
-                        <td class="py-4 px-6"><span class="bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-bold shadow">Completed</span></td>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="py-4 px-6 font-mono text-gray-700">#1002</td>
+                        <td class="py-4 px-6 font-medium text-gray-800">Jane Smith</td>
+                        <td class="py-4 px-6 text-gray-600">July 16, 2025</td>
+                        <td class="py-4 px-6 font-semibold text-gray-800">₹320.00</td>
+                        <td class="py-4 px-6"><span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold">Pending</span></td>
+                        <td class="py-4 px-6"><a href="#" class="text-green-600 hover:underline font-semibold">View</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Common Chart Font Styling
+        Chart.defaults.font.family = 'Poppins, sans-serif';
+        Chart.defaults.font.weight = '500';
+
+        // Sales Chart
+        const salesCtx = document.getElementById('salesChart').getContext('2d');
+        const salesGradient = salesCtx.createLinearGradient(0, 0, 0, 300);
+        salesGradient.addColorStop(0, 'rgba(34, 197, 94, 0.6)');
+        salesGradient.addColorStop(1, 'rgba(34, 197, 94, 0)');
+
+        new Chart(salesCtx, {
+            type: 'line', // Changed to line chart for a better look
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                datasets: [{
+                    label: 'Revenue (₹)',
+                    data: [6500, 5900, 8000, 8100, 5600, 5500, 12500],
+                    backgroundColor: salesGradient,
+                    borderColor: '#16a34a',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4, // Makes the line curved
+                    pointBackgroundColor: '#16a34a',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#e5e7eb' },
+                        ticks: {
+                            callback: function(value) { return '₹' + value / 1000 + 'k'; }
+                        }
+                    },
+                    x: { grid: { display: false } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#1f2937',
+                        titleFont: { size: 16 },
+                        bodyFont: { size: 14 },
+                        padding: 12,
+                        cornerRadius: 8,
+                        displayColors: false,
+                        callbacks: {
+                            label: function(context) {
+                                return `Revenue: ₹${context.raw.toLocaleString()}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Order Status Chart
+        const orderStatusCtx = document.getElementById('orderStatusChart').getContext('2d');
+        const orderData = [29, 3, 2];
+        const totalOrders = orderData.reduce((a, b) => a + b, 0);
+
+        new Chart(orderStatusCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Completed', 'Pending', 'Cancelled'],
+                datasets: [{
+                    data: orderData,
+                    backgroundColor: ['#10B981', '#F59E0B', '#EF4444'],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                    hoverOffset: 12,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '75%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            boxWidth: 12,
+                            font: { size: 14, weight: '500' }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#1f2937',
+                        titleFont: { size: 14 },
+                        bodyFont: { size: 12 },
+                        padding: 10,
+                        cornerRadius: 8,
+                        displayColors: true,
+                    },
+                    // Custom plugin to draw text in the center
+                    centerText: {
+                        display: true,
+                        text: totalOrders,
+                        subtext: 'Total Orders'
+                    }
+                }
+            },
+            plugins: [{
+                id: 'centerText',
+                beforeDraw: function(chart) {
+                    if (chart.options.plugins.centerText.display) {
+                        const ctx = chart.ctx;
+                        const H = chart.height;
+                        const W = chart.width;
+                        ctx.restore();
+                        
+                        const text = chart.options.plugins.centerText.text;
+                        const subtext = chart.options.plugins.centerText.subtext;
+
+                        ctx.font = "bold 32px Poppins, sans-serif";
+                        ctx.fillStyle = "#1f2937";
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        const textX = W / 2;
+                        const textY = H / 2 - 10;
+                        ctx.fillText(text, textX, textY);
+
+                        ctx.font = "500 14px Poppins, sans-serif";
+                        ctx.fillStyle = "#6b7280";
+                        ctx.fillText(subtext, textX, textY + 25);
+
+                        ctx.save();
+                    }
+                }
+            }]
+        });
+    });
+</script>
 @endsection

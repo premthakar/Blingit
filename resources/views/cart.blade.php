@@ -145,10 +145,10 @@
                     </div>
                     @endif
 
-                    <button class="mt-6 w-full bg-green-600 hover:bg-green-700 text-white text-center px-6 py-3.5 rounded-xl font-bold text-base shadow-lg hover:shadow-green-500/30 transition-all duration-300 ease-in-out transform hover:-translate-y-1">
+                    <a href="/checkout" class="mt-6 w-full bg-green-600 hover:bg-green-700 text-white text-center px-6 py-3.5 rounded-xl font-bold text-base shadow-lg hover:shadow-green-500/30 transition-all duration-300 ease-in-out transform hover:-translate-y-1 flex items-center justify-center gap-2">
                         Proceed to Checkout
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

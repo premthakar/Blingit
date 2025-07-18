@@ -3,171 +3,242 @@
 @section('title', 'Products Management')
 
 @section('content')
-<div class="p-2 md:p-6 bg-gradient-to-br from-blue-50 via-white to-green-50 min-h-screen">
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-2">
-        <h1 class="text-2xl md:text-3xl font-extrabold text-gray-800 tracking-tight flex items-center gap-2">
-            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18"/></svg>
-            Products Management
-        </h1>
-        <div class="flex gap-2">
-            <button class="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-semibold px-5 py-2 rounded-lg shadow flex items-center gap-2 transition-all duration-200">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-                Export to CSV
-            </button>
-            <button class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-semibold px-5 py-2 rounded-lg shadow flex items-center gap-2 transition-all duration-200" id="addProductBtn">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-                Add Product
-            </button>
+{{-- 
+  This Blade template provides a modern, responsive "Products Management" page.
+  - It's styled entirely with Tailwind CSS, matching the "Blingit Grocery" theme.
+  - Features a clean header, improved filtering options, and an enhanced table layout with product images.
+  - The page is fully responsive and includes a single, reusable modal for both adding and editing products.
+  - All icons are replaced with high-quality inline SVGs for optimal performance.
+--}}
+
+<div>
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-8">
+        <div>
+            <h1 class="text-3xl font-extrabold text-gray-800">Products Management</h1>
+            <p class="text-gray-500 mt-1">Manage your store's inventory, prices, and categories.</p>
         </div>
+        <button id="addProductBtn" class="w-full sm:w-auto flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold px-5 py-2.5 rounded-lg shadow-lg hover:shadow-green-500/30 transition-all duration-300 transform hover:-translate-y-0.5 mt-4 sm:mt-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+            Add New Product
+        </button>
     </div>
-    <div class="flex flex-col md:flex-row gap-3 mb-6">
-        <div class="relative w-full md:w-1/2">
-            <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35"/></svg>
+
+    <!-- Filters -->
+    <div class="mb-6 flex flex-col sm:flex-row gap-4">
+        <div class="relative flex-grow">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             </span>
-            <input type="text" class="w-full pl-10 pr-3 py-2 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-300 focus:outline-none bg-white text-gray-800 placeholder-gray-400 shadow-sm" placeholder="Search products by name or SKU...">
+            <input type="text" placeholder="Search by product name or SKU..." class="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500">
         </div>
-        <select class="w-full md:w-48 px-3 py-2 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-300 focus:outline-none bg-white text-gray-800 shadow-sm">
+        <select class="w-full sm:w-auto px-4 py-2.5 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500">
             <option>All Categories</option>
-            <option>Bakery Items</option>
-            <option>Organic Products</option>
-            <option>Instant Foods</option>
-            <option>Frozen Foods</option>
-            <option>Confectionery</option>
-            <option>Dairy</option>
-            <option>Condiments</option>
-            <option>Snacks</option>
+            <option>Fruits</option>
+            <option>Vegetables</option>
+            <option>Dairy & Eggs</option>
         </select>
     </div>
-    <div class="bg-white rounded-2xl shadow-xl overflow-x-auto border border-blue-100">
-        <table class="min-w-full text-sm md:text-base">
-            <thead>
-                <tr class="bg-gradient-to-r from-blue-100 to-green-100 text-left">
-                    <th class="py-3 px-4 font-semibold text-gray-700">Name</th>
-                    <th class="py-3 px-4 font-semibold text-gray-700">SKU</th>
-                    <th class="py-3 px-4 font-semibold text-gray-700">Category</th>
-                    <th class="py-3 px-4 font-semibold text-gray-700">Price</th>
-                    <th class="py-3 px-4 font-semibold text-gray-700">Quantity</th>
-                    <th class="py-3 px-4 font-semibold text-gray-700">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach([
-                    ['Maggie','8901058000269','Bakery Items','₹45.00',100],
-                    ['Pasta Delight','8901058000270','Organic Products','₹48.00',14],
-                    ['Instant Soup','8901058000271','Instant Foods','₹28.00',1],
-                    ['Cup Noodles','8901058000272','Frozen Foods','₹29.00',136],
-                    ['Rice Bowl','8901058000273','Confectionery','₹29.00',141],
-                    ['Paneer Tikka Wrap','8901058000274','Confectionery','₹52.00',126],
-                    ['Veg Biryani','8901058000275','Instant Foods','₹41.00',79],
-                    ['Chicken Curry','8901058000276','Bakery Items','₹48.00',127],
-                    ['Fresh Milk','8901058000277','Dairy','₹55.00',60],
-                    ['Brown Bread','8901058000278','Bakery Items','₹35.00',45],
-                    ['Tomato Ketchup','8901058000279','Condiments','₹65.00',32],
-                    ['Potato Chips','8901058000280','Snacks','₹20.00',200],
-                    ['Eggs (12 pack)','8901058000281','Dairy','₹70.00',50],
-                ] as $product)
-                <tr class="hover:bg-blue-50 transition">
-                    <td class="py-3 px-4 font-medium text-gray-900">{{ $product[0] }}</td>
-                    <td class="py-3 px-4 text-gray-700">{{ $product[1] }}</td>
-                    <td class="py-3 px-4">
-                        <span class="bg-gradient-to-r from-blue-200 to-green-200 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold shadow-sm">
-                            {{ $product[2] }}
-                        </span>
-                    </td>
-                    <td class="py-3 px-4 text-green-700 font-semibold">{{ $product[3] }}</td>
-                    <td class="py-3 px-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold shadow-sm
-                            @if($product[4] <= 5)
-                                bg-yellow-100 text-yellow-700
-                            @else
-                                bg-green-100 text-green-700
-                            @endif
-                        ">
-                            {{ $product[4] }}
-                        </span>
-                    </td>
-                    <td class="py-3 px-4 flex gap-2">
-                        <button class="text-blue-600 hover:bg-blue-100 p-2 rounded-full transition" title="Edit">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828 2.828L11.828 15.828a2 2 0 01-2.828 0L9 13z"/></svg>
-                        </button>
-                        <button class="text-red-600 hover:bg-red-100 p-2 rounded-full transition" title="Delete">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-                        </button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+
+    <!-- Products Table -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="min-w-full text-sm">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Product</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">SKU</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Category</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Price</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Stock</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    @php
+                        $products = [
+                            ['id' => 1, 'name' => 'Fresh Apples', 'sku' => 'FRU-APL-001', 'category' => 'Fruits', 'price' => '150.00', 'stock' => 50, 'img' => 'https://www.bigbasket.com/media/uploads/p/l/1203432_2-fresho-apple-fuji.jpg', 'description' => 'Crisp and juicy Fuji apples, perfect for a healthy snack.'],
+                            ['id' => 2, 'name' => 'Organic Carrots', 'sku' => 'VEG-CAR-001', 'category' => 'Vegetables', 'price' => '80.00', 'stock' => 120, 'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000073_16-fresho-carrot-orange.jpg', 'description' => 'Fresh organic carrots, great for salads, soups, and roasting.'],
+                            ['id' => 3, 'name' => 'Amul Gold Milk', 'sku' => 'DAI-MLK-001', 'category' => 'Dairy & Eggs', 'price' => '34.00', 'stock' => 75, 'img' => 'https://www.bigbasket.com/media/uploads/p/l/1203470_2-amul-gold-homogenised-standardised-milk.jpg', 'description' => 'Full cream homogenized milk, rich in nutrients.'],
+                        ];
+                    @endphp
+                    @foreach($products as $product)
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="py-4 px-6">
+                            <div class="flex items-center gap-4">
+                                <img src="{{ $product['img'] }}" class="w-12 h-12 rounded-lg object-cover border border-gray-200" alt="{{ $product['name'] }}" onerror="this.onerror=null;this.src='https://placehold.co/48x48/f0f0f0/999999?text=Img';">
+                                <span class="font-medium text-gray-800">{{ $product['name'] }}</span>
+                            </div>
+                        </td>
+                        <td class="py-4 px-6 font-mono text-gray-700">{{ $product['sku'] }}</td>
+                        <td class="py-4 px-6"><span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">{{ $product['category'] }}</span></td>
+                        <td class="py-4 px-6 font-semibold text-gray-800">₹{{ $product['price'] }}</td>
+                        <td class="py-4 px-6">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold shadow-sm @if($product['stock'] < 10) bg-red-100 text-red-700 @else bg-green-100 text-green-700 @endif">
+                                {{ $product['stock'] }} in stock
+                            </span>
+                        </td>
+                        <td class="py-4 px-6">
+                            <div class="flex items-center gap-2">
+                                <button class="editProductBtn text-blue-600 hover:text-blue-800 p-2 hover:bg-blue-50 rounded-full transition-colors" title="Edit"
+                                        data-id="{{$product['id']}}" data-name="{{$product['name']}}" data-sku="{{$product['sku']}}" data-category="{{$product['category']}}" data-price="{{$product['price']}}" data-stock="{{$product['stock']}}" data-description="{{$product['description']}}">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                                </button>
+                                <button class="text-red-600 hover:text-red-800 p-2 hover:bg-red-50 rounded-full transition-colors" title="Delete">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
-<!-- Add Product Modal -->
-<div id="addProductModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
-    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative border-2 border-blue-200">
-        <button id="closeProductModal" class="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-2xl transition">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+<!-- Add/Edit Product Modal -->
+<div id="productModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white rounded-2xl shadow-lg p-8 w-full max-w-lg relative transform transition-all scale-95 opacity-0">
+        <button id="closeProductModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
-        <h2 class="text-2xl font-extrabold mb-6 flex items-center gap-2 text-blue-700">
-            <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-            Add Product
-        </h2>
-        <form>
-            <div class="mb-4">
-                <label class="block font-semibold mb-1 text-gray-700">Product Name</label>
-                <input type="text" class="w-full border border-blue-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 focus:outline-none" placeholder="Enter product name" required>
+        <h2 id="modalTitle" class="text-2xl font-bold mb-6 text-gray-800">Add New Product</h2>
+        <form id="productForm">
+            <input type="hidden" id="productId" name="id">
+            <div class="space-y-4">
+                <div>
+                    <label for="productName" class="block font-semibold text-gray-700 mb-1">Product Name</label>
+                    <input type="text" id="productName" name="name" class="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="e.g., Fresh Apples" required>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="productSku" class="block font-semibold text-gray-700 mb-1">SKU</label>
+                        <input type="text" id="productSku" name="sku" class="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="e.g., FRU-APL-001" required>
+                    </div>
+                    <div>
+                        <label for="productCategory" class="block font-semibold text-gray-700 mb-1">Category</label>
+                        <select id="productCategory" name="category" class="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                            <option>Fruits</option>
+                            <option>Vegetables</option>
+                            <option>Dairy & Eggs</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="productPrice" class="block font-semibold text-gray-700 mb-1">Price (₹)</label>
+                        <input type="number" id="productPrice" name="price" class="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="e.g., 150.00" required>
+                    </div>
+                    <div>
+                        <label for="productStock" class="block font-semibold text-gray-700 mb-1">Stock Quantity</label>
+                        <input type="number" id="productStock" name="stock" class="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="e.g., 50" required>
+                    </div>
+                </div>
+                <div>
+                    <label for="productDescription" class="block font-semibold text-gray-700 mb-1">Product Description</label>
+                    <textarea id="productDescription" name="description" rows="3" class="w-full border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Enter a brief description of the product..."></textarea>
+                </div>
             </div>
-            <div class="mb-4">
-                <label class="block font-semibold mb-1 text-gray-700">SKU</label>
-                <input type="text" class="w-full border border-blue-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 focus:outline-none" placeholder="Enter SKU" required>
-            </div>
-            <div class="mb-4">
-                <label class="block font-semibold mb-1 text-gray-700">Category</label>
-                <select class="w-full border border-blue-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 focus:outline-none" required>
-                    <option value="">-- Select Category --</option>
-                    <option>Bakery Items</option>
-                    <option>Organic Products</option>
-                    <option>Instant Foods</option>
-                    <option>Frozen Foods</option>
-                    <option>Confectionery</option>
-                    <option>Dairy</option>
-                    <option>Condiments</option>
-                    <option>Snacks</option>
-                </select>
-            </div>
-            <div class="mb-4">
-                <label class="block font-semibold mb-1 text-gray-700">Price</label>
-                <input type="number" class="w-full border border-blue-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 focus:outline-none" placeholder="Enter price" required>
-            </div>
-            <div class="mb-4">
-                <label class="block font-semibold mb-1 text-gray-700">Quantity</label>
-                <input type="number" class="w-full border border-blue-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 focus:outline-none" placeholder="Enter quantity" required>
-            </div>
-            <div class="mb-6">
-                <label class="block font-semibold mb-1 text-gray-700">Image</label>
-                <input type="file" class="w-full border border-blue-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 focus:outline-none">
-            </div>
-            <div class="flex gap-3 mt-6">
-                <button type="button" id="cancelProductModal" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-5 py-2 rounded-lg shadow w-1/2 transition">Cancel</button>
-                <button type="submit" class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-semibold px-5 py-2 rounded-lg shadow w-1/2 transition">Add Product</button>
+            <div class="flex justify-end gap-4 mt-8">
+                <button type="button" id="cancelProductModal" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold px-5 py-2.5 rounded-lg transition">Cancel</button>
+                <button type="submit" id="saveProductBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition">Save Product</button>
             </div>
         </form>
     </div>
 </div>
+
 <script>
-document.getElementById('addProductBtn').addEventListener('click', function() {
-    document.getElementById('addProductModal').classList.remove('hidden');
-});
-document.getElementById('closeProductModal').addEventListener('click', function() {
-    document.getElementById('addProductModal').classList.add('hidden');
-});
-document.getElementById('cancelProductModal').addEventListener('click', function() {
-    document.getElementById('addProductModal').classList.add('hidden');
-});
-window.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        document.getElementById('addProductModal').classList.add('hidden');
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('productModal');
+    const modalContent = modal.querySelector('div');
+    const addBtn = document.getElementById('addProductBtn');
+    const closeBtn = document.getElementById('closeProductModal');
+    const cancelBtn = document.getElementById('cancelProductModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const productForm = document.getElementById('productForm');
+    const productIdInput = document.getElementById('productId');
+    const productNameInput = document.getElementById('productName');
+    const productSkuInput = document.getElementById('productSku');
+    const productCategoryInput = document.getElementById('productCategory');
+    const productPriceInput = document.getElementById('productPrice');
+    const productStockInput = document.getElementById('productStock');
+    const productDescriptionInput = document.getElementById('productDescription');
+    const saveBtn = document.getElementById('saveProductBtn');
+    const editBtns = document.querySelectorAll('.editProductBtn');
+
+    function openModal() {
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            modalContent.classList.remove('scale-95', 'opacity-0');
+        }, 10);
     }
+
+    function closeModal() {
+        modalContent.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 200);
+    }
+
+    function setupAddModal() {
+        productForm.reset();
+        productIdInput.value = '';
+        modalTitle.textContent = 'Add New Product';
+        saveBtn.textContent = 'Save Product';
+        productForm.action = '/admin/products'; // URL for creating
+        openModal();
+    }
+
+    function setupEditModal(data) {
+        productForm.reset();
+        productIdInput.value = data.id;
+        productNameInput.value = data.name;
+        productSkuInput.value = data.sku;
+        productCategoryInput.value = data.category;
+        productPriceInput.value = data.price;
+        productStockInput.value = data.stock;
+        productDescriptionInput.value = data.description;
+        modalTitle.textContent = 'Edit Product';
+        saveBtn.textContent = 'Update Product';
+        productForm.action = `/admin/products/${data.id}`; // URL for updating
+        openModal();
+    }
+
+    addBtn.addEventListener('click', setupAddModal);
+    
+    editBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const data = {
+                id: this.dataset.id,
+                name: this.dataset.name,
+                sku: this.dataset.sku,
+                category: this.dataset.category,
+                price: this.dataset.price,
+                stock: this.dataset.stock,
+                description: this.dataset.description,
+            };
+            setupEditModal(data);
+        });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    cancelBtn.addEventListener('click', closeModal);
+
+    window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+            closeModal();
+        }
+    });
+
+    productForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        console.log('Form submitted!');
+        console.log('Action:', this.action);
+        for (let [key, value] of formData.entries()) {
+            console.log(key, value);
+        }
+        closeModal();
+    });
 });
 </script>
 @endsection

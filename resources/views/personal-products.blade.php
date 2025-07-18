@@ -11,7 +11,7 @@
                 'title' => 'Amul Gold Full Cream Milk',
                 'size' => '500 ml',
                 'price' => '₹34',
-                'img' => 'https://www.bigbasket.com/media/uploads/p/l/1203470_2-amul-gold-homogenised-standardised-milk.jpg',
+                'img' => 'https://www.bigbasket.com/media/uploads/p/l/10000074_19-fresho-cauliflower.jpg',
                 'description' => 'Amul Gold Full Cream Milk is a rich and creamy milk, homogenized and standardized for consistent quality. It is packed with essential nutrients and is perfect for daily consumption, making tea, coffee, or preparing delicious desserts. This milk is sourced from the finest dairies, ensuring freshness and purity with every drop. Enjoy it chilled or use it in your favorite recipes.',
                 'brand' => 'Amul',
                 'availability' => 'In Stock',

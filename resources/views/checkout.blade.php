@@ -147,7 +147,7 @@
 
                     <!-- Discount Code -->
                     <div class="mb-6">
-                        <label for="discount_code" class="block text-sm font-medium text-gray-700 mb-1">Discount Code</label>
+                        <label for="discount_code" class="block text-sm font-medium text-gray-700 mb-1">Discount Code (Optional)</label>
                         <div class="flex gap-2">
                             <input type="text" id="discount_code" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 transition" placeholder="Enter code">
                             <button class="px-4 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition">Apply</button>

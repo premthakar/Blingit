@@ -1,125 +1,138 @@
 @extends('admin.layout')
 
-@section('title', 'Orders')
+@section('title', 'Orders Management')
 
 @section('content')
-<div class="p-2 md:p-8 bg-gradient-to-br from-lime-50 to-white min-h-screen">
-    <div class="flex flex-col md:flex-row gap-2 mb-6 items-center">
-        <div class="relative w-full md:w-1/2">
-            <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <svg class="w-5 h-5 text-lime-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35"/></svg>
-            </span>
-            <input type="text" class="w-full pl-10 pr-3 py-2 border border-lime-200 rounded-xl focus:ring-2 focus:ring-lime-300 focus:outline-none bg-white text-gray-800 placeholder-gray-400 shadow transition" placeholder="Search orders by customer or order #...">
+{{-- 
+  This Blade template provides a modern, responsive "Orders Management" page.
+  - It's styled entirely with Tailwind CSS, matching the "Blingit Grocery" theme.
+  - Features a clean header, improved filtering options, and an enhanced table layout.
+  - The page is fully responsive for a seamless experience on all devices.
+  - All icons are replaced with high-quality inline SVGs for optimal performance.
+--}}
+
+<div>
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-8">
+        <div>
+            <h1 class="text-3xl font-extrabold text-gray-800">Orders Management</h1>
+            <p class="text-gray-500 mt-1">View, track, and manage all customer orders.</p>
         </div>
-        <button class="mt-2 md:mt-0 md:ml-4 px-5 py-2 bg-lime-500 text-white rounded-xl font-semibold shadow hover:bg-lime-600 transition">+ New Order</button>
+        <button class="w-full sm:w-auto flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold px-5 py-2.5 rounded-lg shadow-lg hover:shadow-green-500/30 transition-all duration-300 transform hover:-translate-y-0.5 mt-4 sm:mt-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+            Add New Order
+        </button>
     </div>
-    <h1 class="text-2xl md:text-3xl font-extrabold mb-6 text-lime-700 flex items-center gap-2">
-        <svg class="w-7 h-7 text-lime-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18"/></svg>
-        Orders
-    </h1>
-    <div class="bg-white rounded-3xl shadow-2xl overflow-x-auto border border-lime-100">
-        <table class="min-w-full text-sm md:text-base">
-            <thead>
-                <tr class="bg-gradient-to-r from-lime-100 to-lime-50 text-lime-700">
-                    <th class="py-3 px-2 md:px-4 font-semibold">#</th>
-                    <th class="py-3 px-2 md:px-4 font-semibold">Customer</th>
-                    <th class="py-3 px-2 md:px-4 font-semibold">Date</th>
-                    <th class="py-3 px-2 md:px-4 font-semibold">Total</th>
-                    <th class="py-3 px-2 md:px-4 font-semibold">Status</th>
-                    <th class="py-3 px-2 md:px-4 font-semibold">Address</th>
-                    <th class="py-3 px-2 md:px-4 font-semibold">Phone</th>
-                    <th class="py-3 px-2 md:px-4 font-semibold">Payment</th>
-                    <th class="py-3 px-2 md:px-4 font-semibold">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="border-b hover:bg-lime-50 transition">
-                    <td class="py-3 px-2 md:px-4 font-bold align-top text-lime-700">1001</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">John Doe</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">2024-07-01</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap font-semibold text-lime-600">₹450.00</td>
-                    <td class="py-3 px-2 md:px-4 align-top">
-                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold shadow">Completed</span>
-                    </td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">123 Main St, City</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">9876543210</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">Credit Card</td>
-                    <td class="py-3 px-2 md:px-4 align-top flex gap-1">
-                        <button class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-green-200 transition">Completed</button>
-                        <button class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-yellow-200 transition">Pending</button>
-                        <button class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-red-200 transition">Cancelled</button>
-                    </td>
-                </tr>
-                <tr class="border-b hover:bg-lime-50 transition">
-                    <td class="py-3 px-2 md:px-4 font-bold align-top text-lime-700">1002</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">Jane Smith</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">2024-07-02</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap font-semibold text-lime-600">₹320.00</td>
-                    <td class="py-3 px-2 md:px-4 align-top">
-                        <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold shadow">Pending</span>
-                    </td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">456 Park Ave, City</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">9123456780</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">UPI</td>
-                    <td class="py-3 px-2 md:px-4 align-top flex gap-1">
-                        <button class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-green-200 transition">Completed</button>
-                        <button class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-yellow-200 transition">Pending</button>
-                        <button class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-red-200 transition">Cancelled</button>
-                    </td>
-                </tr>
-                <tr class="border-b hover:bg-lime-50 transition">
-                    <td class="py-3 px-2 md:px-4 font-bold align-top text-lime-700">1003</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">Amit Kumar</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">2024-07-03</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap font-semibold text-lime-600">₹210.00</td>
-                    <td class="py-3 px-2 md:px-4 align-top">
-                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold shadow">Completed</span>
-                    </td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">789 Lake Rd, City</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">9988776655</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">Cash</td>
-                    <td class="py-3 px-2 md:px-4 align-top flex gap-1">
-                        <button class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-green-200 transition">Completed</button>
-                        <button class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-yellow-200 transition">Pending</button>
-                        <button class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-red-200 transition">Cancelled</button>
-                    </td>
-                </tr>
-                <tr class="border-b hover:bg-lime-50 transition">
-                    <td class="py-3 px-2 md:px-4 font-bold align-top text-lime-700">1004</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">Priya Verma</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">2024-07-03</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap font-semibold text-lime-600">₹580.00</td>
-                    <td class="py-3 px-2 md:px-4 align-top">
-                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold shadow">Completed</span>
-                    </td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">101 Market St, City</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">9876501234</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">Debit Card</td>
-                    <td class="py-3 px-2 md:px-4 align-top flex gap-1">
-                        <button class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-green-200 transition">Completed</button>
-                        <button class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-yellow-200 transition">Pending</button>
-                        <button class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-red-200 transition">Cancelled</button>
-                    </td>
-                </tr>
-                <tr class="border-b hover:bg-lime-50 transition">
-                    <td class="py-3 px-2 md:px-4 font-bold align-top text-lime-700">1005</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">Rahul Singh</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">2024-07-04</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap font-semibold text-lime-600">₹150.00</td>
-                    <td class="py-3 px-2 md:px-4 align-top">
-                        <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold shadow">Cancelled</span>
-                    </td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">202 Green Lane, City</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">9001122334</td>
-                    <td class="py-3 px-2 md:px-4 align-top whitespace-nowrap">Net Banking</td>
-                    <td class="py-3 px-2 md:px-4 align-top flex gap-1">
-                        <button class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-green-200 transition">Completed</button>
-                        <button class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-yellow-200 transition">Pending</button>
-                        <button class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-red-200 transition">Cancelled</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+    <!-- Filters -->
+    <div class="mb-6 flex flex-col sm:flex-row gap-4">
+        <div class="relative flex-grow">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </span>
+            <input type="text" placeholder="Search by customer or order ID..." class="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+        </div>
+        <select class="w-full sm:w-auto px-4 py-2.5 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+            <option>Filter by Status</option>
+            <option>Completed</option>
+            <option>Pending</option>
+            <option>Cancelled</option>
+        </select>
+    </div>
+
+    <!-- Orders Table -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="min-w-full text-sm">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Order #</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Customer</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Date</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Total</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Status</th>
+                        <th class="py-3 px-6 text-left font-semibold text-gray-600">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="py-4 px-6 font-mono text-gray-700">#1001</td>
+                        <td class="py-4 px-6 font-medium text-gray-800">John Doe</td>
+                        <td class="py-4 px-6 text-gray-600">July 1, 2025</td>
+                        <td class="py-4 px-6 font-semibold text-gray-800">₹450.00</td>
+                        <td class="py-4 px-6"><span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Completed</span></td>
+                        <td class="py-4 px-6">
+                            <div class="flex items-center gap-2">
+                                <button class="text-green-600 hover:text-green-800 font-semibold text-xs">Completed</button>
+                                <button class="text-yellow-600 hover:text-yellow-800 font-semibold text-xs">Pending</button>
+                                <button class="text-orange-600 hover:text-orange-800 font-semibold text-xs">Cancelled</button>
+                                <button class="text-red-600 hover:text-red-800 font-semibold text-xs">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="py-4 px-6 font-mono text-gray-700">#1002</td>
+                        <td class="py-4 px-6 font-medium text-gray-800">Jane Smith</td>
+                        <td class="py-4 px-6 text-gray-600">July 2, 2025</td>
+                        <td class="py-4 px-6 font-semibold text-gray-800">₹320.00</td>
+                        <td class="py-4 px-6"><span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full">Pending</span></td>
+                        <td class="py-4 px-6">
+                            <div class="flex items-center gap-2">
+                                <button class="text-green-600 hover:text-green-800 font-semibold text-xs">Completed</button>
+                                <button class="text-yellow-600 hover:text-yellow-800 font-semibold text-xs">Pending</button>
+                                <button class="text-orange-600 hover:text-orange-800 font-semibold text-xs">Cancelled</button>
+                                <button class="text-red-600 hover:text-red-800 font-semibold text-xs">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="py-4 px-6 font-mono text-gray-700">#1003</td>
+                        <td class="py-4 px-6 font-medium text-gray-800">Amit Kumar</td>
+                        <td class="py-4 px-6 text-gray-600">July 3, 2025</td>
+                        <td class="py-4 px-6 font-semibold text-gray-800">₹210.00</td>
+                        <td class="py-4 px-6"><span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Completed</span></td>
+                        <td class="py-4 px-6">
+                            <div class="flex items-center gap-2">
+                                <button class="text-green-600 hover:text-green-800 font-semibold text-xs">Completed</button>
+                                <button class="text-yellow-600 hover:text-yellow-800 font-semibold text-xs">Pending</button>
+                                <button class="text-orange-600 hover:text-orange-800 font-semibold text-xs">Cancelled</button>
+                                <button class="text-red-600 hover:text-red-800 font-semibold text-xs">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="py-4 px-6 font-mono text-gray-700">#1004</td>
+                        <td class="py-4 px-6 font-medium text-gray-800">Priya Verma</td>
+                        <td class="py-4 px-6 text-gray-600">July 3, 2025</td>
+                        <td class="py-4 px-6 font-semibold text-gray-800">₹580.00</td>
+                        <td class="py-4 px-6"><span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Completed</span></td>
+                        <td class="py-4 px-6">
+                            <div class="flex items-center gap-2">
+                                <button class="text-green-600 hover:text-green-800 font-semibold text-xs">Completed</button>
+                                <button class="text-yellow-600 hover:text-yellow-800 font-semibold text-xs">Pending</button>
+                                <button class="text-orange-600 hover:text-orange-800 font-semibold text-xs">Cancelled</button>
+                                <button class="text-red-600 hover:text-red-800 font-semibold text-xs">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="py-4 px-6 font-mono text-gray-700">#1005</td>
+                        <td class="py-4 px-6 font-medium text-gray-800">Rahul Singh</td>
+                        <td class="py-4 px-6 text-gray-600">July 4, 2025</td>
+                        <td class="py-4 px-6 font-semibold text-gray-800">₹150.00</td>
+                        <td class="py-4 px-6"><span class="bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full">Cancelled</span></td>
+                        <td class="py-4 px-6">
+                            <div class="flex items-center gap-2">
+                                <button class="text-green-600 hover:text-green-800 font-semibold text-xs">Completed</button>
+                                <button class="text-yellow-600 hover:text-yellow-800 font-semibold text-xs">Pending</button>
+                                <button class="text-orange-600 hover:text-orange-800 font-semibold text-xs">Cancelled</button>
+                                <button class="text-red-600 hover:text-red-800 font-semibold text-xs">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @endsection

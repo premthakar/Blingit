@@ -3,14 +3,7 @@
 @section('title', 'Order Placed | Blingit Grocery')
 
 @section('content')
-{{-- 
-  This Blade template provides a modern, static, and celebratory order confirmation page.
-  - It's styled entirely with Tailwind CSS without any JavaScript.
-  - The layout is clean, responsive, and includes a static order status tracker.
-  - All dynamic animations (confetti, progress bar) have been removed.
-  - The review section is a simple, non-interactive form.
-  - All icons are inline SVGs for better performance and styling.
---}}
+
 <div class="bg-gray-100 min-h-screen font-sans flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="relative w-full max-w-5xl bg-white rounded-3xl shadow-2xl border border-gray-200 p-6 sm:p-10 z-10 mx-auto overflow-hidden">
         
@@ -102,7 +95,7 @@
 
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 mt-12 border-t border-gray-200 pt-8">
-                <a href="/shop" class="flex-1 bg-green-600 hover:bg-green-700 text-white text-center py-3 px-6 text-base font-bold rounded-xl transition shadow-lg hover:shadow-green-500/30 hover:-translate-y-1 transform duration-300 ease-in-out flex items-center justify-center gap-2">
+                <a href="/" class="flex-1 bg-green-600 hover:bg-green-700 text-white text-center py-3 px-6 text-base font-bold rounded-xl transition shadow-lg hover:shadow-green-500/30 hover:-translate-y-1 transform duration-300 ease-in-out flex items-center justify-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                     <span>Continue Shopping</span>
                 </a>

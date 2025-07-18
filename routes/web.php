@@ -7,11 +7,11 @@ use App\Notifications\UserNotification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PlaceOrderController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 // Public grocery eCommerce pages
 Route::view('/', 'home');
-Route::view('/shop', 'shop');
 Route::view('/milk', 'milk')->name('milk');
 Route::view('/vegetables', 'vegetables')->name('vegetables');
 Route::view('/fruits', 'fruits')->name('fruits');
@@ -28,7 +28,13 @@ Route::view('/about', 'about');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::view('/register', 'register')->name('register');
-Route::view('/forgot-password', 'forgot-password')->name('password.request');
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
+Route::view('/otp-verify', 'verify-otp')->name('otp.verify');
+Route::post('/reset-password', [ResetPasswordController::class, 'update'])->name('password.update');
+Route::get('/reset-password', function () {
+    return view('reset-password');
+})->name('password.reset');
 Route::get('/logout', function () {
     session()->flush();
     return redirect('/login');
@@ -45,11 +51,6 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::get('/orders', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.orders');
     Route::view('/users', 'admin.users')->name('admin.users');
     Route::view('/profile', 'admin.profile')->name('admin.profile');
-    Route::view('/settings', 'admin.settings')->name('admin.settings');
-    Route::get('/admin/contact', function () {
-    return view('admin.contact');
-})->name('admin.contact');
-
-   
+    Route::view('/contact', 'admin.contact')->name('admin.contact');
 });
 
