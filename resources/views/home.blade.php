@@ -105,10 +105,11 @@
                 ];
             @endphp
             @foreach($milk_eggs_products as $product)
-            <div class="swiper-slide">
-                <a href="{{ route('personal-products') }}" class="block group">
+           <div class="swiper-slide">
+                   
                     <div class="bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition-all p-4 flex flex-col justify-between group">
                         <!-- Image -->
+                        <a href="{{ route('personal-products') }}" class="block group">   
                         <div class="relative">
                             <img src="{{ $product['img'] }}" alt="{{ $product['title'] }}" class="w-full h-32 object-contain mb-3 transition-transform duration-200 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/150x128/E0E0E0/666666?text=Image+Not+Found';">
                             <!-- Delivery badge -->
@@ -119,6 +120,7 @@
                                 8 MINS
                             </div>
                         </div>
+                         </a>
                         <!-- Product Info -->
                         <div class="flex-1 flex flex-col justify-between text-center">
                             <h3 class="text-base font-bold text-gray-800 line-clamp-2 leading-snug mb-1">{{ $product['title'] }}</h3>
@@ -132,7 +134,7 @@
                             </button>
                         </div>
                     </div>
-                </a>
+               
             </div>
             @endforeach
         </div>
@@ -159,9 +161,10 @@
             @endphp
             @foreach($vegetables_products as $product)
             <div class="swiper-slide">
-                <a href="{{ route('personal-products') }}" class="block group">
+                   
                     <div class="bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition-all p-4 flex flex-col justify-between group">
                         <!-- Image -->
+                        <a href="{{ route('personal-products') }}" class="block group">   
                         <div class="relative">
                             <img src="{{ $product['img'] }}" alt="{{ $product['title'] }}" class="w-full h-32 object-contain mb-3 transition-transform duration-200 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/150x128/E0E0E0/666666?text=Image+Not+Found';">
                             <!-- Delivery badge -->
@@ -172,6 +175,7 @@
                                 8 MINS
                             </div>
                         </div>
+                         </a>
                         <!-- Product Info -->
                         <div class="flex-1 flex flex-col justify-between text-center">
                             <h3 class="text-base font-bold text-gray-800 line-clamp-2 leading-snug mb-1">{{ $product['title'] }}</h3>
@@ -185,7 +189,7 @@
                             </button>
                         </div>
                     </div>
-                </a>
+               
             </div>
             @endforeach
         </div>
@@ -212,9 +216,10 @@
             @endphp
             @foreach($fruits_products as $product)
             <div class="swiper-slide">
-                <a href="{{ route('personal-products') }}" class="block group">
+                   
                     <div class="bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition-all p-4 flex flex-col justify-between group">
                         <!-- Image -->
+                        <a href="{{ route('personal-products') }}" class="block group">   
                         <div class="relative">
                             <img src="{{ $product['img'] }}" alt="{{ $product['title'] }}" class="w-full h-32 object-contain mb-3 transition-transform duration-200 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/150x128/E0E0E0/666666?text=Image+Not+Found';">
                             <!-- Delivery badge -->
@@ -225,6 +230,7 @@
                                 8 MINS
                             </div>
                         </div>
+                         </a>
                         <!-- Product Info -->
                         <div class="flex-1 flex flex-col justify-between text-center">
                             <h3 class="text-base font-bold text-gray-800 line-clamp-2 leading-snug mb-1">{{ $product['title'] }}</h3>
@@ -238,7 +244,7 @@
                             </button>
                         </div>
                     </div>
-                </a>
+               
             </div>
             @endforeach
         </div>
@@ -265,9 +271,10 @@
             @endphp
             @foreach($electronics_products as $product)
             <div class="swiper-slide">
-                <a href="{{ route('personal-products') }}" class="block group">      
+                   
                     <div class="bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition-all p-4 flex flex-col justify-between group">
                         <!-- Image -->
+                        <a href="{{ route('personal-products') }}" class="block group">   
                         <div class="relative">
                             <img src="{{ $product['img'] }}" alt="{{ $product['title'] }}" class="w-full h-32 object-contain mb-3 transition-transform duration-200 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/150x128/E0E0E0/666666?text=Image+Not+Found';">
                             <!-- Delivery badge -->
@@ -278,6 +285,7 @@
                                 8 MINS
                             </div>
                         </div>
+                         </a>
                         <!-- Product Info -->
                         <div class="flex-1 flex flex-col justify-between text-center">
                             <h3 class="text-base font-bold text-gray-800 line-clamp-2 leading-snug mb-1">{{ $product['title'] }}</h3>
@@ -291,7 +299,7 @@
                             </button>
                         </div>
                     </div>
-                </a>
+               
             </div>
             @endforeach
         </div>
