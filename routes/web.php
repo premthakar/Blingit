@@ -12,6 +12,11 @@ use App\Http\Controllers\PlaceOrderController;
 // Public grocery eCommerce pages
 Route::view('/', 'home');
 Route::view('/shop', 'shop');
+Route::view('/milk', 'milk')->name('milk');
+Route::view('/vegetables', 'vegetables')->name('vegetables');
+Route::view('/fruits', 'fruits')->name('fruits');
+Route::view('/elctronics', 'electronics')->name('electronics');
+Route::view('/personal-products', 'personal-products')->name('personal-products');
 Route::view('/product', 'product'); // For demo, static product page
 Route::view('/cart', 'cart');
 Route::view('/checkout', 'checkout');
